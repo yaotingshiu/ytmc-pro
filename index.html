@@ -131,13 +131,13 @@
   .flip { animation: flip .45s var(--ease); }
   @keyframes flip { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-  .checkout { position: relative; background: #fff; border-radius: 20px; min-height: 560px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  .checkout { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 20px; min-height: 560px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
   .checkout .embed { display: none; }
   .checkout .embed.on { display: block; }
-  .checkout iframe { display: block; width: 100% !important; min-height: 560px; border: 0; }
-  .loading { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; color: #6b7280; font-size: 14px; background: #fff; transition: opacity .4s; }
+  .checkout iframe { display: block; width: 100% !important; height: 1000px !important; border: 0; }
+  .loading { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; color: var(--sub); font-size: 14px; background: var(--card); transition: opacity .4s; }
   .loading.done { opacity: 0; pointer-events: none; }
-  .spinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid #e5e7eb; border-top-color: var(--gold2); animation: rot .8s linear infinite; }
+  .spinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(255,255,255,.12); border-top-color: var(--gold2); animation: rot .8s linear infinite; }
   @keyframes rot { to { transform: rotate(360deg); } }
 
   /* ---------- sections ---------- */
