@@ -60,9 +60,16 @@
   .store:hover .arrow { transform: translateX(4px); }
   .store.soon { pointer-events: none; color: var(--sub); background: var(--card2); box-shadow: inset 0 0 0 1px var(--line2); }
   .store.soon .arrow { display: none; }
-  .others { margin-top: 12px; font-size: 12.5px; color: var(--sub); }
-  .others a { color: var(--sub); }
-  .others a:hover { color: var(--text); }
+  .store img { width: 22px; height: 22px; flex: none; }
+  .store.soon img { filter: grayscale(.4); opacity: .85; }
+  .others { margin-top: 18px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: var(--sub); }
+  .ob { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px 7px 9px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 700;
+    color: var(--text); background: var(--card2); border: 1px solid var(--line); transition: transform .3s var(--spring), border-color .2s; }
+  .ob img { width: 18px; height: 18px; }
+  a.ob:hover { transform: translateY(-2px); border-color: var(--line2); }
+  .ob.soon { color: var(--sub); }
+  .ob.soon img { filter: grayscale(.4); opacity: .85; }
+  .ob small { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 10px; color: var(--sub); background: rgba(255,255,255,.06); }
 
   .fb { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
   .fb p { color: var(--sub); font-size: 13.5px; }
@@ -116,9 +123,8 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   const STORES = {"chrome": "https://chromewebstore.google.com/detail/cmgadokilonjjigdjafidjdggacbcmdm", "edge": "", "firefox": ""};
-  const ICONS = { chrome: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#34d399\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#34d399\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#34d399\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#34d399\"/></svg>", edge: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#38bdf8\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#38bdf8\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#38bdf8\"/></svg>", firefox: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#fb923c\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#fb923c\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#fb923c\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#fb923c\"/></svg>" };
+  const LOGO = (b) => `<img src="img/${b}_logo.png" alt="" width="22" height="22">`;
   const NAMES = { chrome: 'Chrome', edge: 'Edge', firefox: 'Firefox' };
-  const BAG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M9.5 13.5l2 2 3.5-3.5"/></svg>';
   const TX = {
     zh: { store: '到 {0} 商店重新安裝', soon: '{0} 版即將上架', other: '其他瀏覽器：', soon_s: '即將上架',
       lic_run_t: '正在登出這台裝置的 Pro 授權…', lic_run_p: '釋出名額後，這組授權碼就能在別的瀏覽器使用。',
@@ -158,21 +164,24 @@
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   let licState = '';
 
+  // one big button for the browser in use, small ones for the others (ready for when Edge / Firefox go live)
   function renderStore() {
     const btn = document.getElementById('storeBtn');
     const url = STORES[BROWSER];
-    // a plain shopping-bag icon (store badge style), drawn in the button's own colour
-    document.getElementById('storeIco').innerHTML = url ? BAG : ICONS[BROWSER];
+    document.getElementById('storeIco').innerHTML = LOGO(BROWSER);
     document.getElementById('storeTxt').textContent = url ? T('store', NAMES[BROWSER]) : T('soon', NAMES[BROWSER]);
     btn.classList.toggle('soon', !url);
     if (url) btn.href = url; else btn.removeAttribute('href');
-    const others = Object.keys(STORES).filter((b) => b !== BROWSER);
     const box = document.getElementById('others');
-    box.textContent = T('other');
-    others.forEach((b, n) => {
-      if (n) box.append(' · ');
-      if (STORES[b]) { const a = document.createElement('a'); a.href = STORES[b]; a.target = '_blank'; a.rel = 'noopener'; a.textContent = NAMES[b]; box.append(a); }
-      else box.append(NAMES[b] + ' (' + T('soon_s') + ')');
+    box.replaceChildren(T('other'));
+    Object.keys(NAMES).filter((b) => b !== BROWSER).forEach((b) => {
+      const el = document.createElement(STORES[b] ? 'a' : 'span');
+      el.className = 'ob' + (STORES[b] ? '' : ' soon');
+      if (STORES[b]) { el.href = STORES[b]; el.target = '_blank'; el.rel = 'noopener'; }
+      el.innerHTML = LOGO(b);
+      const n = document.createElement('span'); n.textContent = NAMES[b]; el.append(n);
+      if (!STORES[b]) { const t = document.createElement('small'); t.textContent = T('soon_s'); el.append(t); }
+      box.append(el);
     });
   }
   function renderLic() {
