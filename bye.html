@@ -115,9 +115,10 @@
 </div>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
-  const STORES = {"chrome": "https://chromewebstore.google.com/search/Moving%20Company%20for%20YouTube", "edge": "", "firefox": ""};
+  const STORES = {"chrome": "https://chromewebstore.google.com/detail/cmgadokilonjjigdjafidjdggacbcmdm", "edge": "", "firefox": ""};
   const ICONS = { chrome: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#34d399\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#34d399\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#34d399\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#34d399\"/></svg>", edge: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#38bdf8\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#38bdf8\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#38bdf8\"/></svg>", firefox: "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"4\" width=\"19\" height=\"16\" rx=\"3.5\" fill=\"none\" stroke=\"#fb923c\" stroke-width=\"1.8\"/><path d=\"M2.5 8.5h19\" stroke=\"#fb923c\" stroke-width=\"1.8\"/><circle cx=\"5.6\" cy=\"6.3\" r=\".9\" fill=\"#fb923c\"/><circle cx=\"8.3\" cy=\"6.3\" r=\".9\" fill=\"#fb923c\"/></svg>" };
   const NAMES = { chrome: 'Chrome', edge: 'Edge', firefox: 'Firefox' };
+  const BAG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M9.5 13.5l2 2 3.5-3.5"/></svg>';
   const TX = {
     zh: { store: '到 {0} 商店重新安裝', soon: '{0} 版即將上架', other: '其他瀏覽器：', soon_s: '即將上架',
       lic_run_t: '正在登出這台裝置的 Pro 授權…', lic_run_p: '釋出名額後，這組授權碼就能在別的瀏覽器使用。',
@@ -160,7 +161,8 @@
   function renderStore() {
     const btn = document.getElementById('storeBtn');
     const url = STORES[BROWSER];
-    document.getElementById('storeIco').innerHTML = ICONS[BROWSER];
+    // a plain shopping-bag icon (store badge style), drawn in the button's own colour
+    document.getElementById('storeIco').innerHTML = url ? BAG : ICONS[BROWSER];
     document.getElementById('storeTxt').textContent = url ? T('store', NAMES[BROWSER]) : T('soon', NAMES[BROWSER]);
     btn.classList.toggle('soon', !url);
     if (url) btn.href = url; else btn.removeAttribute('href');
