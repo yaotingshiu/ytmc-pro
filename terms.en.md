@@ -2,7 +2,7 @@
 
 Last updated: October 11, 2026
 
-Welcome to **YouTube Moving Company** (the "Tool"). The Tool is a browser extension developed and maintained by independent developer Hsu Yao Ting ("the developer", "we" or "us"). By installing or using the Tool, or by purchasing a Pro plan, you confirm that you have read and agree to these terms.
+Welcome to **Moving Company for YouTube™** (formerly YouTube Moving Company; the "Tool"). The Tool is a browser extension developed and maintained by independent developer Hsu Yao Ting ("the developer", "we" or "us"). By installing or using the Tool, or by purchasing a Pro plan, you confirm that you have read and agree to these terms.
 
 ## 1. The service
 
@@ -29,7 +29,7 @@ Except where required by law, paid subscription periods are **non-refundable**, 
 ## 5. License key rules
 
 1. After purchase you receive a license key for use by the purchaser only.
-2. One license key can be active in **up to 5 browsers** (or browser profiles) **at the same time**. You can sign out a device in the extension, or deactivate devices you no longer use in Lemon Squeezy My Orders.
+2. A 1-month license key can be active in **up to 3 browsers** (or browser profiles) **at the same time**; 3-month and 6-month keys in **up to 5**. You can sign out a device in the extension, or deactivate devices you no longer use in Lemon Squeezy My Orders.
 3. You may **not** share, publicly post, resell or rent your license key, or otherwise let anyone other than the purchaser use it.
 4. If we detect abnormal use of a license key (such as mass sharing, reselling or frequent device changes in a short time), we may **suspend that license key first** and contact the purchaser where appropriate.
 5. You may not modify, reverse engineer or otherwise circumvent the Tool's license verification.
