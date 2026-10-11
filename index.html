@@ -517,9 +517,8 @@
   let PLAN = 'm3', loadedPlan = null;
   function ckUrl(plan) {
     const u = new URL(CK.base);
-    u.searchParams.set('embed', '1'); u.searchParams.set('enabled', CK.variants[plan]);
+    u.searchParams.set('enabled', CK.variants[plan]);
     u.searchParams.set('media', '0'); u.searchParams.set('logo', '0'); u.searchParams.set('desc', '0');
-    u.searchParams.set('locale', LANG === 'en' ? 'en' : (LANG === 'cn' ? 'zh-CN' : 'zh-TW'));
     return u.toString();
   }
   function loadCheckout() {
@@ -548,7 +547,8 @@
     setTimeout(() => {
       vPlans.hidden = true; plansEl.classList.remove('leaving');
       vPay.hidden = false; payEl.classList.remove('leaving'); payEl.classList.add('entering');
-      document.querySelector('.views').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const top = document.querySelector('.views').getBoundingClientRect().top + scrollY - 12;
+      if (Math.abs(scrollY - top) > 4) window.scrollTo({ top, behavior: 'smooth' });
       setTimeout(() => { payEl.classList.remove('entering'); busy = false; }, 620);
     }, 400);
   }
