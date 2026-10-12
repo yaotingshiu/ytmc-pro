@@ -109,7 +109,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
   .crown { position: absolute; top: -40px; left: 50%; width: 58px; height: 46px; margin-left: -29px; transform-origin: 50% 100%;
-    transition: transform .35s var(--spring); filter: drop-shadow(0 6px 14px rgba(215,220,228,.35)); z-index: 2; }
+    transition: transform .35s var(--spring); filter: drop-shadow(0 6px 14px rgba(245,196,81,.4)); z-index: 2; }
   .crown svg { width: 100%; height: 100%; overflow: visible; }
   .crown .spark { opacity: 0; transform-origin: center; transform-box: fill-box; }
   .plan.silver:hover .crown .spark { animation: twinkle 1.2s ease-in-out infinite; }
@@ -117,7 +117,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   .plan.silver:hover .crown .spark:nth-of-type(3) { animation-delay: .8s; }
   @keyframes twinkle { 0%,100% { opacity: 0; transform: scale(.3); } 50% { opacity: 1; transform: scale(1); } }
   .crown .gem { transition: fill .3s; }
-  .plan.silver:hover .crown .gem { fill: #8fd3ff; }
+  .plan.silver:hover .crown .gem { fill: #ff6b70; }
 
   .plan h2 { font-size: 19px; }
   .plan .for { color: var(--sub); font-size: 13px; margin-top: 2px; min-height: 40px; }
@@ -374,14 +374,14 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
           <span class="glow"></span>
           <div class="crown" aria-hidden="true">
             <svg viewBox="0 0 64 50">
-              <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d7dce4"/><stop offset="1" stop-color="#8f98a6"/></linearGradient></defs>
-              <path d="M6 40 L3 12 L19 25 L32 4 L45 25 L61 12 L58 40 Z" fill="url(#cg)" stroke="#f4f6fa" stroke-width="1.5" stroke-linejoin="round"/>
-              <rect x="6" y="40" width="52" height="7" rx="3" fill="url(#cg)" stroke="#f4f6fa" stroke-width="1.2"/>
-              <circle class="gem" cx="32" cy="30" r="4.2" fill="#b8c2d0"/>
-              <circle cx="3" cy="11" r="3" fill="#f4f6fa"/><circle cx="32" cy="4" r="3.2" fill="#f4f6fa"/><circle cx="61" cy="11" r="3" fill="#f4f6fa"/>
-              <path class="spark" d="M-6 2 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z" fill="#fff"/>
-              <path class="spark" d="M66 -2 l1.5 -4.5 l1.5 4.5 l4.5 1.5 l-4.5 1.5 l-1.5 4.5 l-1.5 -4.5 l-4.5 -1.5 z" fill="#fff"/>
-              <path class="spark" d="M44 -8 l1.2 -3.6 l1.2 3.6 l3.6 1.2 l-3.6 1.2 l-1.2 3.6 l-1.2 -3.6 l-3.6 -1.2 z" fill="#fff"/>
+              <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4c2"/><stop offset=".5" stop-color="#f5c451"/><stop offset="1" stop-color="#c98a12"/></linearGradient></defs>
+              <path d="M6 40 L3 12 L19 25 L32 4 L45 25 L61 12 L58 40 Z" fill="url(#cg)" stroke="#ffe8a3" stroke-width="1.5" stroke-linejoin="round"/>
+              <rect x="6" y="40" width="52" height="7" rx="3" fill="url(#cg)" stroke="#ffe8a3" stroke-width="1.2"/>
+              <circle class="gem" cx="32" cy="30" r="4.2" fill="#e5484d"/>
+              <circle cx="3" cy="11" r="3" fill="#fff1c4"/><circle cx="32" cy="4" r="3.2" fill="#fff1c4"/><circle cx="61" cy="11" r="3" fill="#fff1c4"/>
+              <path class="spark" d="M-6 2 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z" fill="#fff6d5"/>
+              <path class="spark" d="M66 -2 l1.5 -4.5 l1.5 4.5 l4.5 1.5 l-4.5 1.5 l-1.5 4.5 l-1.5 -4.5 l-4.5 -1.5 z" fill="#fff6d5"/>
+              <path class="spark" d="M44 -8 l1.2 -3.6 l1.2 3.6 l3.6 1.2 l-3.6 1.2 l-1.2 3.6 l-1.2 -3.6 l-3.6 -1.2 z" fill="#fff6d5"/>
             </svg>
           </div>
           <span class="badge" data-t="popular">最受歡迎</span>
