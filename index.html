@@ -329,22 +329,57 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   :root[data-theme="light"] .gold .badge, :root[data-theme="light"] .btn.gold-b, :root[data-theme="light"] .pmenu .tag.gold { background: linear-gradient(135deg, #ffd36e, #f5c451 50%, #e0a526); }
   :root[data-theme="light"] .pro { background: linear-gradient(110deg, #e0a526, #f5c451 35%, #fff1c4 50%, #f5c451 65%, #e0a526); background-size: 250% 100%; }
   :root[data-theme="light"] body::before { opacity: .7; }
+  /* ---------- sticky top bar (shared by every page) ---------- */
+  .topbar { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(1.6) blur(16px); -webkit-backdrop-filter: saturate(1.6) blur(16px);
+    border-bottom: 1px solid transparent; transition: background-color .3s, border-color .3s; }
+  .topbar.stuck { background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom-color: var(--line); }
+  .topbar .wrap { max-width: 1120px; }
+  .topbar .top { display: flex; align-items: center; gap: 10px; padding: 12px 0; }
+  .topbar .home { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; border-radius: 12px; padding: 4px 8px 4px 4px; margin-left: -4px; transition: background .2s; }
+  .topbar .home:hover { background: rgba(var(--fg),.05); }
+  .topbar .home svg { width: 34px; height: 34px; flex: none; transition: transform .45s var(--spring); }
+  .topbar .home:hover svg { transform: rotate(-8deg) scale(1.08); }
+  .topbar .home b { font-size: 15px; letter-spacing: -.2px; line-height: 1.1; white-space: nowrap; }
+  .topbar .home b .for { display: block; font-weight: 600; font-size: 11px; color: var(--sub); margin-top: 1px; }
+  .nav { display: flex; gap: 4px; margin-left: 8px; }
+  .nav a, .navm a { text-decoration: none; font-size: 13.5px; font-weight: 600; color: var(--sub); padding: 6px 12px; border-radius: 16px; transition: color .2s, background .2s; white-space: nowrap; }
+  .nav a:hover { color: var(--text); background: rgba(var(--fg),.06); }
+  .nav a.on { color: var(--text); background: rgba(var(--fg),.08); }
+  .topbar .sp { flex: 1; }
+  .topbar .theme-btn { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--sub);
+    display: grid; place-items: center; cursor: pointer; transition: color .2s, transform .35s var(--spring), border-color .2s; }
+  .topbar .theme-btn:hover { color: var(--text); border-color: var(--line2); transform: rotate(-12deg) scale(1.06); }
+  .topbar .theme-btn svg { width: 17px; height: 17px; }
+  .topbar .theme-btn .moon { display: none; }
+  :root[data-theme="light"] .topbar .theme-btn .sun { display: none; }
+  :root[data-theme="light"] .topbar .theme-btn .moon { display: block; }
+  .topbar .lang { position: relative; display: flex; flex: none; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 3px; }
+  .topbar .lang .pill { position: absolute; top: 3px; bottom: 3px; left: 0; width: 0; border-radius: 16px; background: var(--card2);
+    box-shadow: inset 0 0 0 1px var(--line2), 0 2px 8px rgba(0,0,0,.25); transition: transform .45s var(--spring), width .45s var(--spring); }
+  :root[data-theme="light"] .topbar .lang .pill { box-shadow: inset 0 0 0 1px var(--line2), 0 2px 8px rgba(20,24,32,.12); }
+  .topbar .lang button { position: relative; z-index: 1; border: 0; background: none; color: var(--sub); font: 600 12px inherit; white-space: nowrap;
+    padding: 5px 11px; border-radius: 16px; cursor: pointer; transition: color .25s; }
+  .topbar .lang button:hover, .topbar .lang button.on { color: var(--text); }
+  :root[data-theme="light"] .topbar .home svg { filter: drop-shadow(0 1px 1.5px rgba(20,24,32,.55)) drop-shadow(0 0 .5px rgba(20,24,32,.6)); }
+  .navm { display: none; justify-content: center; gap: 6px; padding-bottom: 10px; }
+  .navm a { font-size: 13px; padding: 6px 14px; background: var(--card); border: 1px solid var(--line); }
+  .navm a.on { color: var(--text); border-color: var(--line2); }
+  @media (max-width: 860px) { .nav { display: none; } .navm { display: flex; } }
+  @media (max-width: 520px) { .topbar .top { gap: 8px; padding: 10px 0; } .topbar .home b { display: none; } .topbar .lang button { padding: 5px 8px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="topbar" id="topbar"><div class="wrap">
   <div class="top">
     <a class="home" href="./" id="homeLink"><svg aria-hidden="true" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="front-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#2D3139" /><stop offset="100%" stop-color="#12151B" /></linearGradient><linearGradient id="tab-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#3F444E" /><stop offset="100%" stop-color="#21252D" /></linearGradient><linearGradient id="chip-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE600" /><stop offset="100%" stop-color="#FFB800" /></linearGradient><filter id="sd-folder-o1" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000" flood-opacity="0.35" /></filter><filter id="sd-core-o1" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000000" flood-opacity="0.55" /></filter></defs><g filter="url(#sd-folder-o1)"><path d="M 64 148 C 64 130, 78 116, 96 116 L 204 116 C 222 116, 236 130, 246 148 L 264 176 L 416 176 C 434 176, 448 190, 448 208 L 448 250 L 64 250 Z" fill="url(#tab-o1)" /><rect x="115" y="152" width="70" height="18" rx="9" fill="url(#chip-o1)" /><path d="M 123 155 L 177 155" stroke="#FFF" stroke-width="1.5" stroke-opacity="0.65" stroke-linecap="round" /><rect x="54" y="176" width="404" height="268" rx="40" fill="url(#front-o1)" stroke="rgba(255,255,255,0.1)" stroke-width="1" /><path d="M 94 178 L 418 178" stroke="#FFF" stroke-width="2.5" stroke-opacity="0.45" stroke-linecap="round" /></g><g filter="url(#sd-core-o1)"><path d="M 325 165 C 370 165, 445 220, 448 290" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 410 270 L 455 323 L 480 260 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 180 456 C 155 450, 55 400, 65 305" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 100 320 L 55 265 L 30 330 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 195 260 C 188 255, 180 260, 180 270 L 180 346 C 180 356, 188 361, 195 356 L 255 318 C 262 314, 262 302, 255 298 Z" fill="none" stroke="#FFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.45" /><path d="M 270 260 C 263 255, 255 260, 255 270 L 255 346 C 255 356, 263 361, 270 356 L 330 318 C 337 314, 337 302, 330 298 Z" fill="#FFF" /></g></svg><b>Moving Company <span class="for">for YouTube™</span></b></a>
+    <nav class="nav"><a href="features.html" data-nv="0">功能介紹</a><a class="on" href="./" data-nv="1">方案與購買</a></nav>
     <span class="sp"></span>
     <button class="theme-btn" type="button" title="Light / Dark · 淺色 / 深色" aria-label="Light / Dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg></button>
-    <div class="lang" role="group" aria-label="Language">
-      <span class="pill"></span>
-      <button data-lang="zh">繁中</button>
-      <button data-lang="cn">简中</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="ja">日本語</button>
-    </div>
+    <div class="lang" role="group" aria-label="Language"><span class="pill"></span><button data-lang="zh">繁中</button><button data-lang="cn">简中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div>
   </div>
+  <div class="navm"><a href="features.html" data-nv="0">功能介紹</a><a class="on" href="./" data-nv="1">方案與購買</a></div>
+</div></div>
+<div class="wrap">
 
   <div class="hero">
     <div class="logo-stage" id="logoStage"><div class="tilt"><svg aria-hidden="true" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="front-o2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#2D3139" /><stop offset="100%" stop-color="#12151B" /></linearGradient><linearGradient id="tab-o2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#3F444E" /><stop offset="100%" stop-color="#21252D" /></linearGradient><linearGradient id="chip-o2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE600" /><stop offset="100%" stop-color="#FFB800" /></linearGradient><filter id="sd-folder-o2" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000" flood-opacity="0.35" /></filter><filter id="sd-core-o2" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000000" flood-opacity="0.55" /></filter></defs><g filter="url(#sd-folder-o2)"><path d="M 64 148 C 64 130, 78 116, 96 116 L 204 116 C 222 116, 236 130, 246 148 L 264 176 L 416 176 C 434 176, 448 190, 448 208 L 448 250 L 64 250 Z" fill="url(#tab-o2)" /><rect x="115" y="152" width="70" height="18" rx="9" fill="url(#chip-o2)" /><path d="M 123 155 L 177 155" stroke="#FFF" stroke-width="1.5" stroke-opacity="0.65" stroke-linecap="round" /><rect x="54" y="176" width="404" height="268" rx="40" fill="url(#front-o2)" stroke="rgba(255,255,255,0.1)" stroke-width="1" /><path d="M 94 178 L 418 178" stroke="#FFF" stroke-width="2.5" stroke-opacity="0.45" stroke-linecap="round" /></g><g filter="url(#sd-core-o2)"><path d="M 325 165 C 370 165, 445 220, 448 290" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 410 270 L 455 323 L 480 260 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 180 456 C 155 450, 55 400, 65 305" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 100 320 L 55 265 L 30 330 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 195 260 C 188 255, 180 260, 180 270 L 180 346 C 180 356, 188 361, 195 356 L 255 318 C 262 314, 262 302, 255 298 Z" fill="none" stroke="#FFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.45" /><path d="M 270 260 C 263 255, 255 260, 255 270 L 255 346 C 255 356, 263 361, 270 356 L 330 318 C 337 314, 337 302, 330 298 Z" fill="#FFF" /></g></svg></div></div>
@@ -497,6 +532,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
 
   <footer>
     <nav>
+      <a href="features.html" data-nv="0">功能介紹</a>
       <a href="terms.html" data-t="terms">服務條款</a>
       <a href="privacy.html" data-t="privacy">隱私權政策</a>
       <a href="#manage" data-t="mg_short">管理授權碼</a>
@@ -684,6 +720,12 @@ function saved(){try{var v=localStorage.getItem('theme');return v==='light'||v==
 if(mq.addEventListener)mq.addEventListener('change',function(){if(!saved())r.setAttribute('data-theme',mq.matches?'light':'dark')});
 document.querySelectorAll('.theme-btn').forEach(function(b){b.onclick=function(){var n=r.getAttribute('data-theme')==='light'?'dark':'light';r.classList.add('theme-anim');r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}setTimeout(function(){r.classList.remove('theme-anim')},400)}});
 addEventListener('storage',function(e){if(e.key==='theme'&&(e.newValue==='light'||e.newValue==='dark'))r.setAttribute('data-theme',e.newValue)});})();
+</script>
+<script>
+(function(){var NV={"zh": ["功能介紹", "方案與購買"], "cn": ["功能介绍", "方案与购买"], "en": ["Features", "Plans"], "ja": ["機能紹介", "プランと購入"]},tb=document.getElementById('topbar');
+function lab(){var l=document.documentElement.lang,k=l==='zh-CN'?'cn':l==='ja'?'ja':l==='en'?'en':'zh';document.querySelectorAll('[data-nv]').forEach(function(a){a.textContent=NV[k][+a.dataset.nv]})}
+lab();new MutationObserver(lab).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+function st(){tb.classList.toggle('stuck',scrollY>8)}addEventListener('scroll',st,{passive:true});st();})();
 </script>
 </body>
 </html>
