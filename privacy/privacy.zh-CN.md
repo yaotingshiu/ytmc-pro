@@ -47,7 +47,7 @@
 ## 6. 网站
 
 1. 网站由 GitHub Pages 托管，GitHub 可能依其[隐私声明](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement)记录连接信息。
-2. 网站只在你的浏览器中记住你选择的语言（localStorage），不使用追踪 Cookie 或分析工具。
+2. 网站只在你的浏览器中记住你选择的语言与深浅色模式（localStorage），不使用追踪 Cookie 或分析工具。
 3. 方案页中的结账界面由 Lemon Squeezy 提供，它可能使用付款与防欺诈所需的 Cookie。
 
 ## 7. 扩展程序权限说明

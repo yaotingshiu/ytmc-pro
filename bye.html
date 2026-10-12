@@ -103,6 +103,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   :root[data-theme="light"] .theme-btn .moon { display: block; }
   /* white arrows stay readable on the light background (logo colours unchanged) */
   :root[data-theme="light"] .home svg, :root[data-theme="light"] .logo-stage svg, :root[data-theme="light"] .logo svg { filter: drop-shadow(0 1px 1.5px rgba(20,24,32,.55)) drop-shadow(0 0 .5px rgba(20,24,32,.6)); }
+  @media (max-width: 520px) { .top { gap: 8px; } .top .home b { display: none; } .lang button { padding: 5px 8px; } }
   .theme-anim body, .theme-anim body * { transition: background-color .3s, color .3s, border-color .3s, box-shadow .3s !important; }
   :root[data-theme="light"] .store { background: linear-gradient(135deg, #ffd36e, #f5c451 45%, #e0a526); }
   :root[data-theme="light"] body::before { opacity: .7; }
@@ -114,7 +115,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
     <a class="home" href="./"><svg aria-hidden="true" viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="front-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#2D3139" /><stop offset="100%" stop-color="#12151B" /></linearGradient><linearGradient id="tab-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#3F444E" /><stop offset="100%" stop-color="#21252D" /></linearGradient><linearGradient id="chip-o1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE600" /><stop offset="100%" stop-color="#FFB800" /></linearGradient><filter id="sd-folder-o1" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000" flood-opacity="0.35" /></filter><filter id="sd-core-o1" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000000" flood-opacity="0.55" /></filter></defs><g filter="url(#sd-folder-o1)"><path d="M 64 148 C 64 130, 78 116, 96 116 L 204 116 C 222 116, 236 130, 246 148 L 264 176 L 416 176 C 434 176, 448 190, 448 208 L 448 250 L 64 250 Z" fill="url(#tab-o1)" /><rect x="115" y="152" width="70" height="18" rx="9" fill="url(#chip-o1)" /><path d="M 123 155 L 177 155" stroke="#FFF" stroke-width="1.5" stroke-opacity="0.65" stroke-linecap="round" /><rect x="54" y="176" width="404" height="268" rx="40" fill="url(#front-o1)" stroke="rgba(255,255,255,0.1)" stroke-width="1" /><path d="M 94 178 L 418 178" stroke="#FFF" stroke-width="2.5" stroke-opacity="0.45" stroke-linecap="round" /></g><g filter="url(#sd-core-o1)"><path d="M 325 165 C 370 165, 445 220, 448 290" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 410 270 L 455 323 L 480 260 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 180 456 C 155 450, 55 400, 65 305" fill="none" stroke="#FFF" stroke-width="30" stroke-linecap="round" /><path d="M 100 320 L 55 265 L 30 330 Z" fill="#FFF" stroke="#FFF" stroke-width="7" stroke-linejoin="round" /><path d="M 195 260 C 188 255, 180 260, 180 270 L 180 346 C 180 356, 188 361, 195 356 L 255 318 C 262 314, 262 302, 255 298 Z" fill="none" stroke="#FFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.45" /><path d="M 270 260 C 263 255, 255 260, 255 270 L 255 346 C 255 356, 263 361, 270 356 L 330 318 C 337 314, 337 302, 330 298 Z" fill="#FFF" /></g></svg><b>Moving Company <span class="for">for YouTube™</span></b></a>
     <span class="sp"></span>
     <button class="theme-btn" type="button" title="Light / Dark · 淺色 / 深色" aria-label="Light / Dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg></button>
-    <div class="lang" role="group" aria-label="Language"><span class="pill"></span><button data-lang="zh">繁中</button><button data-lang="cn">简中</button><button data-lang="en">EN</button></div>
+    <div class="lang" role="group" aria-label="Language"><span class="pill"></span><button data-lang="zh">繁中</button><button data-lang="cn">简中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div>
   </div>
 
   <div class="hero">
@@ -173,7 +174,16 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
       t: 'Thanks for using', lead: 'The extension has been removed. We hope it made your move smooth and your account tidy. Change your mind? You’re always welcome back. Your data was never uploaded anywhere.',
       back_t: 'Moving again?', back_p: 'Reinstall to pick up where you left off. Backup files you exported can be imported straight away.',
       fb_t: 'Mind telling us why you left?', fb_p: 'One line is plenty. We read every email, and it helps us make the tool better.', fb_btn: 'Email us',
-      disc: 'This is an independent tool, not affiliated with Google or YouTube. YouTube is a trademark of Google LLC.' }
+      disc: 'This is an independent tool, not affiliated with Google or YouTube. YouTube is a trademark of Google LLC.' },
+    ja: { store: '{0} ストアから再インストール', soon: '{0} 版は近日公開', other: 'その他のブラウザ：', soon_s: '近日公開',
+      lic_run_t: 'このデバイスの Pro をサインアウトしています…', lic_run_p: '枠を空けると、同じライセンスキーを別のブラウザで使えるようになります。',
+      lic_ok_t: 'このデバイスの Pro をサインアウトしました', lic_ok_p: '枠が空きました。再インストールするか、別のブラウザで同じキーを入力すれば引き続き使えます。',
+      lic_bad_t: 'このデバイスを自動でサインアウトできませんでした', lic_bad_p: '<a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener">Lemon Squeezy My Orders</a> でこのデバイスを無効化し、枠を空けてください。',
+      mail_subject: 'Moving Company for YouTube を削除した理由',
+      t: 'ご利用ありがとうございました', lead: '拡張機能は削除されました。引っ越しやアカウントの整理がスムーズに進んでいたらうれしいです。気が変わったら、いつでも戻ってきてください。あなたのデータを私たちがアップロードしたことは一度もありません。',
+      back_t: 'また引っ越しますか？', back_p: '再インストールすれば続きから使えます。エクスポートしたバックアップファイルもそのままインポートできます。',
+      fb_t: '削除した理由を教えていただけますか？', fb_p: 'ひとことで十分です。すべてのメールに目を通し、ツールの改善に役立てます。', fb_btn: 'メールを送る',
+      disc: 'このツールは個人が独自に開発したもので、Google および YouTube とは関係ありません。YouTube は Google LLC の商標です。' }
   };
   const ZH = {}; document.querySelectorAll('[data-t]').forEach((el) => { ZH[el.dataset.t] = el.textContent; });
   let LANG = 'zh';
@@ -244,7 +254,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   function setLang(l, instant) {
     LANG = l;
     document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = T(el.dataset.t); });
-    document.documentElement.lang = l === 'en' ? 'en' : (l === 'cn' ? 'zh-CN' : 'zh-TW');
+    document.documentElement.lang = l === 'en' ? 'en' : l === 'ja' ? 'ja' : (l === 'cn' ? 'zh-CN' : 'zh-TW');
     document.querySelectorAll('.lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === l));
     document.getElementById('fbBtn').href = 'mailto:speed132454@gmail.com?subject=' + encodeURIComponent(T('mail_subject'));
     movePill(instant); renderStore(); renderLic();
@@ -253,8 +263,8 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   document.querySelectorAll('.lang button').forEach((b) => b.onclick = () => setLang(b.dataset.lang));
   let start = new URLSearchParams(location.search).get('lang');
   if (!start) { try { start = localStorage.getItem('lang'); } catch (e) {} }
-  if (!start) { const nav = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase(); start = /^zh/.test(nav) ? (/(cn|sg|hans)/.test(nav) ? 'cn' : 'zh') : 'en'; }
-  setLang(['zh', 'cn', 'en'].includes(start) ? start : 'en', true);
+  if (!start) { const nav = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase(); start = /^ja/.test(nav) ? 'ja' : /^zh/.test(nav) ? (/(cn|sg|hans)/.test(nav) ? 'cn' : 'zh') : 'en'; }
+  setLang(['zh', 'cn', 'en', 'ja'].includes(start) ? start : 'en', true);
   addEventListener('resize', () => movePill(true));
   if (document.fonts) document.fonts.ready.then(() => movePill(true));
   freeSlot();

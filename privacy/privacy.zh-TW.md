@@ -47,7 +47,7 @@
 ## 6. 網站
 
 1. 網站由 GitHub Pages 託管，GitHub 可能依其[隱私權聲明](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement)記錄連線資訊。
-2. 網站只在你的瀏覽器中記住你選的語言（localStorage），不使用追蹤 Cookie 或分析工具。
+2. 網站只在你的瀏覽器中記住你選的語言與深淺色模式（localStorage），不使用追蹤 Cookie 或分析工具。
 3. 方案頁中的結帳畫面由 Lemon Squeezy 提供，它可能使用付款與防詐騙所需的 Cookie。
 
 ## 7. 擴充功能權限說明

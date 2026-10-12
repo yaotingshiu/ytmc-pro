@@ -47,7 +47,7 @@ You can delete backups in the extension at any time. When you uninstall the Tool
 ## 6. Website
 
 1. The website is hosted on GitHub Pages. GitHub may log connection data under its [Privacy Statement](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement).
-2. The website only remembers your chosen language in your browser (localStorage). It uses no tracking cookies or analytics.
+2. The website only remembers your chosen language and light/dark theme in your browser (localStorage). It uses no tracking cookies or analytics.
 3. The checkout on the plans page is provided by Lemon Squeezy, which may use cookies needed for payment and fraud prevention.
 
 ## 7. Extension permissions

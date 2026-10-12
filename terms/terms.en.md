@@ -96,7 +96,7 @@ We may update these terms to reflect changes in features or law. Updates will be
 
 1. If any part of these terms is found invalid, the rest remains in effect.
 2. Our failure to enforce any right in these terms is not a waiver of that right.
-3. These terms are provided in Traditional Chinese, Simplified Chinese and English. If the versions differ, the Traditional Chinese version prevails.
+3. These terms are provided in Traditional Chinese, Simplified Chinese, English and Japanese. If the versions differ, the Traditional Chinese version prevails.
 
 ## 17. Contact
 
