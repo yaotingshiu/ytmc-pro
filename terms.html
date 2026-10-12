@@ -36,6 +36,11 @@
   article li { margin: 6px 0; }
   article strong { color: var(--text); }
   article a { color: var(--gold); }
+  article table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; display: block; overflow-x: auto; }
+  article th, article td { border: 1px solid var(--line2); padding: 8px 10px; text-align: left; vertical-align: top; color: #d6d8dd; }
+  article th { background: var(--card2); color: var(--text); white-space: nowrap; }
+  footer a { color: var(--sub); margin: 0 6px; }
+  footer a:hover { color: var(--text); }
   .back { display: inline-flex; gap: 6px; color: var(--sub); text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 6px; }
   .back:hover { color: var(--text); }
   footer { text-align: center; color: var(--sub); font-size: 12px; padding: 0 0 40px; }
@@ -51,13 +56,14 @@
   </div>
   <a class="back" href="./" id="backLink">← <span id="backText">返回方案頁</span></a>
   <article id="doc"><p style="color:var(--sub)">Loading…</p></article>
-  <footer>© <span id="yr"></span> Moving Company for YouTube™</footer>
+  <footer><div><a href="terms.html" id="lnTerms">服務條款</a>·<a href="privacy.html" id="lnPriv">隱私權政策</a></div>© <span id="yr"></span> Moving Company for YouTube™</footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   const FILES = { zh: 'terms/terms.zh-TW.md', cn: 'terms/terms.zh-CN.md', en: 'terms/terms.en.md' };
   const BACK = { zh: '返回方案頁', cn: '返回方案页', en: 'Back to plans' };
+  const LN = { zh: ['服務條款', '隱私權政策'], cn: ['服务条款', '隐私政策'], en: ['Terms of Service', 'Privacy Policy'] };
   const doc = document.getElementById('doc'), pill = document.querySelector('.lang .pill');
   function movePill(instant) {
     const on = document.querySelector('.lang button.on'); if (!on) return;
@@ -69,13 +75,17 @@
     document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
     document.documentElement.lang = l === 'en' ? 'en' : (l === 'cn' ? 'zh-CN' : 'zh-TW');
     document.getElementById('backText').textContent = BACK[l];
+    document.getElementById('lnTerms').textContent = LN[l][0]; document.getElementById('lnPriv').textContent = LN[l][1];
+    document.title = LN[l][0] + ' · Moving Company for YouTube™';
     movePill(instant);
     try { localStorage.setItem('lang', l); } catch (e) {}
+    document.querySelectorAll('footer a').forEach(a => { a.href = a.getAttribute('href').split('?')[0] + '?lang=' + l; });
     doc.classList.add('fade');
     try {
       const md = await fetch(FILES[l], { cache: 'no-cache' }).then(r => { if (!r.ok) throw 0; return r.text(); });
       doc.innerHTML = marked.parse(md);
       doc.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+      doc.querySelectorAll('a[href$=".html"]').forEach(a => { a.href = a.getAttribute('href') + '?lang=' + l; });
     } catch (e) { doc.innerHTML = '<p>Failed to load. Please refresh.</p>'; }
     doc.classList.remove('fade');
   }
