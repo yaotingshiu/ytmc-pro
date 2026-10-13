@@ -1,6 +1,6 @@
 # Terms of Service
 
-Last updated: October 12, 2026
+Last updated: October 14, 2026
 
 Welcome to **Moving Company for YouTube™** (formerly YouTube Moving Company; the "Tool"). The Tool is a browser extension developed and maintained by independent developer Hsu Yao Ting ("the developer", "we" or "us"). By installing or using the Tool, or by purchasing a Pro plan, you confirm that you have read and agree to these terms and our [Privacy Policy](privacy.html). If you do not agree, please do not install or use the Tool.
 
@@ -24,28 +24,35 @@ Welcome to **Moving Company for YouTube™** (formerly YouTube Moving Company; t
 
 ## 4. Plans and payment
 
-1. Pro is offered as 1-month, 3-month and 6-month subscriptions. Prices are shown on the purchase page.
+1. Pro is offered as 1-month and 1-year subscriptions and as a one-time lifetime plan. Prices are shown on the purchase page.
 2. Payments are processed by **Lemon Squeezy**, which acts as the Merchant of Record and handles payment collection, receipts and applicable taxes. We never receive or store your card or other payment details. Your purchase is also subject to Lemon Squeezy's terms.
-3. All plans **renew automatically** at the end of each period at the same plan price until you cancel.
-4. If we change a plan's price, the new price applies only from your next renewal after the change, and we will notify you on the website or by email before it takes effect. If you don't accept the new price, you can cancel before the renewal.
+3. The 1-month and 1-year plans **renew automatically** at the end of each period at the same plan price until you cancel. The lifetime plan is a single payment; it does not renew and you will not be charged again.
+4. If we change a plan's price, the new price applies only from your next renewal after the change, and we will notify you on the website or by email before it takes effect. If you don't accept the new price, you can cancel before the renewal. Lifetime plans already purchased are not affected by later price changes.
+5. **Nature of the lifetime plan**: The lifetime plan is a license to use Pro features without further payment for as long as the Tool continues to be operated and offered. "Lifetime" refers only to the license having no fixed term; it is not a guarantee that the Tool or any of its features will exist or remain usable forever. The rights under the lifetime plan end if the Tool can no longer be provided, or Pro features can no longer work properly, because of any of the following:
+   - the developer decides to discontinue the Tool or to end its updates and maintenance;
+   - changes to the policies, technology or services of third-party platforms (including but not limited to YouTube, Lemon Squeezy and browser extension stores);
+   - any other cause not attributable to the developer.
+
+   In these cases, except where mandatory law provides otherwise, the developer is not obliged to refund amounts paid or to pay compensation. If the developer decides to discontinue the Tool, we will try to announce it on the website a reasonable time in advance.
 
 ## 5. Cancellation
 
 1. You can cancel at any time by signing in to Lemon Squeezy [My Orders](https://app.lemonsqueezy.com/my-orders) or by using the management link in your receipt email.
 2. After cancelling you will not be charged again; Pro stays active until the end of the current period and then returns to the free version.
 3. If a renewal payment fails, Lemon Squeezy may retry it. Pro access ends once the payment can no longer be completed.
+4. The lifetime plan has no subscription, so there is nothing to cancel.
 
 ## 6. Refunds
 
 1. Pro is digital content and an online service that is not supplied on a physical medium, and it is provided immediately after payment. By paying, you agree that the service starts immediately, and you acknowledge that any statutory withdrawal or cooling-off period for distance purchases therefore does not apply, to the extent permitted by the law that applies to you.
-2. Except where required by law, paid subscription periods are **non-refundable**, and we do not offer prorated refunds for unused time.
+2. Except where required by law, paid subscription periods and lifetime purchases are **non-refundable**, and we do not offer prorated refunds for unused time.
 3. If a technical problem prevents you from using the Tool, please email us first and we will do our best to help. Refunds in individual cases are at our discretion.
 4. If an order is refunded or charged back, the related license key will be deactivated.
 
 ## 7. License key rules
 
 1. After purchase you receive a license key for use by the purchaser only.
-2. A 1-month license key can be active in **up to 3 browsers** (or browser profiles) **at the same time**; 3-month and 6-month keys in **up to 5**. You can sign out a device in the extension, or deactivate devices you no longer use in Lemon Squeezy My Orders.
+2. A 1-month license key can be active in **up to 2 browsers** (or browser profiles) **at the same time**; 1-year and lifetime keys in **up to 3**. You can sign out a device in the extension, or deactivate devices you no longer use in Lemon Squeezy My Orders.
 3. You may **not** share, publicly post, resell or rent your license key, or otherwise let anyone other than the purchaser use it.
 4. If we detect abnormal use of a license key (such as mass sharing, reselling or frequent device changes in a short time), we may **suspend that license key first** and contact the purchaser where appropriate.
 
@@ -80,7 +87,7 @@ How we handle data is described in our [Privacy Policy](privacy.html). In short:
 
 1. The Tool is provided "as is", without any guarantee that it is error-free, uninterrupted or fit for a particular purpose.
 2. To the maximum extent permitted by law, the developer is not liable for any direct or indirect loss arising from the use of, or inability to use, the Tool, including but not limited to data loss or changes to account content.
-3. In any case, the developer's total liability is limited to the amount you actually paid for your most recent Pro period.
+3. In any case, the developer's total liability is limited to the amount you actually paid for your most recent Pro purchase or renewal.
 4. We are not responsible for failing to perform these terms because of events beyond our reasonable control, such as natural disasters, war, internet or power outages, or outages or policy changes of third-party platforms such as YouTube or Lemon Squeezy.
 
 ## 14. Changes to these terms
