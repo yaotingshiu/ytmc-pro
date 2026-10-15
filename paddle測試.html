@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+      Paddle.Environment.set("sandbox");
+      Paddle.Initialize({
+        token: "test_0c272eb5ee3fc7993d1b0b7fc2a",
+      });
+
+      function openCheckout() {
+        Paddle.Checkout.open({
+          items: [
+            { priceId: "pri_01m4yszmeggjw0t6v2bw2qpk4t", quantity: 1 },
+          ],
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="openCheckout()">Buy now</button>
+  </body>
+</html>
