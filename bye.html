@@ -155,12 +155,12 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
     zh: { store: '到 {0} 商店重新安裝', soon: '{0} 版即將上架', other: '其他瀏覽器：', soon_s: '即將上架',
       lic_run_t: '正在登出這台裝置的 Pro 授權…', lic_run_p: '釋出名額後，這組授權碼就能在別的瀏覽器使用。',
       lic_ok_t: '已登出這台裝置的 Pro 授權', lic_ok_p: '名額已經釋出，重新安裝或在其他瀏覽器輸入同一組授權碼即可繼續使用。',
-      lic_bad_t: '沒能自動登出這台裝置', lic_bad_p: '請到 <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener">Lemon Squeezy My Orders</a> 手動停用這台裝置，釋出名額。',
+      lic_bad_t: '沒能自動登出這台裝置', lic_bad_p: '請來信 <a href="mailto:speed132454@gmail.com">speed132454@gmail.com</a>，我們會協助釋出這台裝置的名額。',
       mail_subject: '移除 Moving Company for YouTube 的原因' },
     cn: { store: '到 {0} 商店重新安装', soon: '{0} 版即将上线', other: '其他浏览器：', soon_s: '即将上线',
       lic_run_t: '正在退出这台设备的 Pro 授权…', lic_run_p: '释放名额后，这组授权码就能在别的浏览器使用。',
       lic_ok_t: '已退出这台设备的 Pro 授权', lic_ok_p: '名额已经释放，重新安装或在其他浏览器输入同一组授权码即可继续使用。',
-      lic_bad_t: '没能自动退出这台设备', lic_bad_p: '请到 <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener">Lemon Squeezy My Orders</a> 手动停用这台设备，释放名额。',
+      lic_bad_t: '没能自动退出这台设备', lic_bad_p: '请来信 <a href="mailto:speed132454@gmail.com">speed132454@gmail.com</a>，我们会协助释放这台设备的名额。',
       mail_subject: '移除 Moving Company for YouTube 的原因',
       t: '感谢你使用', lead: '扩展程序已经移除。希望它曾帮你顺利搬家、把账号整理得清清爽爽。如果改变心意，随时欢迎回来，你的用户数据我们从来没有上传过。',
       back_t: '想再搬一次家？', back_p: '重新安装后就能继续使用。之前导出的备份文件也能直接导入。',
@@ -169,7 +169,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
     en: { store: 'Reinstall from the {0} store', soon: '{0} version coming soon', other: 'Other browsers: ', soon_s: 'coming soon',
       lic_run_t: 'Signing this device out of Pro…', lic_run_p: 'This frees the slot so your key can be used in another browser.',
       lic_ok_t: 'This device has been signed out of Pro', lic_ok_p: 'The slot is free again. Reinstall, or enter the same key in another browser, to keep using Pro.',
-      lic_bad_t: 'We couldn’t sign this device out automatically', lic_bad_p: 'Please deactivate it in <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener">Lemon Squeezy My Orders</a> to free the slot.',
+      lic_bad_t: 'We couldn’t sign this device out automatically', lic_bad_p: 'Please email <a href="mailto:speed132454@gmail.com">speed132454@gmail.com</a> and we will free the slot for you.',
       mail_subject: 'Why I removed Moving Company for YouTube',
       t: 'Thanks for using', lead: 'The extension has been removed. We hope it made your move smooth and your account tidy. Change your mind? You’re always welcome back. Your data was never uploaded anywhere.',
       back_t: 'Moving again?', back_p: 'Reinstall to pick up where you left off. Backup files you exported can be imported straight away.',
@@ -178,7 +178,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
     ja: { store: '{0} ストアから再インストール', soon: '{0} 版は近日公開', other: 'その他のブラウザ：', soon_s: '近日公開',
       lic_run_t: 'このデバイスの Pro をサインアウトしています…', lic_run_p: '枠を空けると、同じライセンスキーを別のブラウザで使えるようになります。',
       lic_ok_t: 'このデバイスの Pro をサインアウトしました', lic_ok_p: '枠が空きました。再インストールするか、別のブラウザで同じキーを入力すれば引き続き使えます。',
-      lic_bad_t: 'このデバイスを自動でサインアウトできませんでした', lic_bad_p: '<a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener">Lemon Squeezy My Orders</a> でこのデバイスを無効化し、枠を空けてください。',
+      lic_bad_t: 'このデバイスを自動でサインアウトできませんでした', lic_bad_p: '<a href="mailto:speed132454@gmail.com">speed132454@gmail.com</a> までご連絡ください。このデバイスの枠を解放します。',
       mail_subject: 'Moving Company for YouTube を削除した理由',
       t: 'ご利用ありがとうございました', lead: '拡張機能は削除されました。引っ越しやアカウントの整理がスムーズに進んでいたらうれしいです。気が変わったら、いつでも戻ってきてください。あなたのデータを私たちがアップロードしたことは一度もありません。',
       back_t: 'また引っ越しますか？', back_p: '再インストールすれば続きから使えます。エクスポートしたバックアップファイルもそのままインポートできます。',
@@ -195,7 +195,7 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
 
   // the extension passes its license in the #fragment (never sent to any server) so we can free the slot
   const frag = new URLSearchParams(location.hash.slice(1));
-  const lic = { k: frag.get('k'), i: frag.get('i') };
+  const lic = { k: frag.get('k'), i: frag.get('i'), m: frag.get('m') === 'test' ? 'test' : 'live' };
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   let licState = '';
 
@@ -232,13 +232,12 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
     if (!lic.k || !lic.i) return;
     licState = 'run'; renderLic();
     try {
-      const r = await fetch('https://api.lemonsqueezy.com/v1/licenses/deactivate', {
-        method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ license_key: lic.k, instance_id: lic.i }).toString()
+      const r = await fetch(`https://${lic.m}.dodopayments.com/licenses/deactivate`, {
+        method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ license_key: lic.k, license_key_instance_id: lic.i })
       });
-      const j = await r.json().catch(() => null);
-      // "instance_id not found" means it was already removed, which is also fine
-      licState = (j && (j.deactivated || /instance/i.test(j.error || ''))) ? 'ok' : 'bad';
+      // 403 / 404: this browser's activation is already gone, so the slot is free anyway
+      licState = r.ok || r.status === 403 || r.status === 404 ? 'ok' : 'bad';
     } catch (e) { licState = 'bad'; }
     lic.k = lic.i = null;
     renderLic();

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Moving Company for YouTube™ Pro</title>
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+document.documentElement.setAttribute('data-theme',t)})()</script>
+<style>
+  :root { --bg: #0c0d10; --card: #15171c; --text: #f3f4f6; --sub: #9aa0aa; --line: rgba(255,255,255,.1); --ok: #34d399; --bad: #fb7185; --gold: #f5c451; color-scheme: dark; }
+  :root[data-theme="light"] { --bg: #f4f5f8; --card: #fff; --text: #14171c; --sub: #5b6371; --line: rgba(20,24,32,.12); --ok: #059669; --bad: #e11d48; --gold: #b97d00; color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; line-height: 1.6; }
+  .card { width: 100%; max-width: 520px; text-align: center; padding: 36px 28px; border-radius: 24px; background: var(--card); border: 1px solid var(--line); }
+  .ic { width: 72px; height: 72px; margin: 0 auto 16px; border-radius: 50%; display: grid; place-items: center; font-size: 38px; font-weight: 900; color: #fff; background: var(--ok); animation: pop .5s cubic-bezier(.34,1.56,.64,1); }
+  .bad .ic { background: var(--bad); }
+  @keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+  h1 { font-size: 24px; letter-spacing: -.3px; }
+  p { color: var(--sub); margin-top: 10px; font-size: 15px; }
+  ol { text-align: left; margin: 22px auto 0; max-width: 380px; padding-left: 22px; color: var(--text); font-size: 14.5px; }
+  ol li { margin: 6px 0; }
+  a.btn { display: inline-block; margin-top: 24px; padding: 11px 22px; border-radius: 24px; text-decoration: none; font-weight: 700; color: #2a1d00; background: linear-gradient(135deg, #ffd36e, #f5c451, #e0a526); }
+  .bad ol { display: none; }
+  #lic { margin-top: 22px; }
+  #lic:empty { display: none; }
+  .has-key ol { display: none; }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="ic" id="ic">✓</div>
+  <h1 id="t"></h1>
+  <p id="p"></p>
+  <ol id="steps"></ol>
+  <div id="lic"></div>
+  <a class="btn" id="back" href="./" target="_top"></a>
+</div>
+<script>
+  // a purchase from Dodo's test checkout lands here from test.checkout.dodopayments.com: test mode for this tab
+  (function () { let m = /^https:\/\/test\.checkout\.dodopayments\.com\//.test(document.referrer) ? 'test' : '';
+    try { if (m) sessionStorage.setItem('ytmc_dodo_mode', m); else m = sessionStorage.getItem('ytmc_dodo_mode') || ''; } catch (e) { /* ignore */ }
+    window.YTMC_DODO_MODE = m === 'test' ? 'test' : 'live'; })();
+</script>
+<script src="ext.js"></script>
+<script>
+  // Dodo Payments sends the buyer here after checkout (?payment_id=… or ?subscription_id=…, &status=…, &license_key=…).
+  // With the key in the URL the buyer can activate this browser right here (the extension listens to this site).
+  const TX = {
+    zh: { ok_pk: '授權碼也已寄到你付款時填寫的信箱。現在就可以在下面一鍵開通這個瀏覽器：', ok_t: '付款完成，感謝支持！', ok_p: '授權碼已寄到你付款時填寫的信箱（幾分鐘內會收到，請一併檢查垃圾郵件）。', steps: ['打開 Moving Company for YouTube™ 擴充功能', '點右上角齒輪 → 升級 Pro', '貼上授權碼，按「在這個瀏覽器啟用」'], bad_t: '付款沒有完成', bad_p: '這次付款未成功或已取消，沒有扣款。你可以回到方案頁重新付款。', back: '回到方案頁' },
+    cn: { ok_pk: '授权码也已发送到你付款时填写的邮箱。现在就可以在下面一键激活这个浏览器：', ok_t: '付款完成，感谢支持！', ok_p: '授权码已发送到你付款时填写的邮箱（几分钟内会收到，请一并检查垃圾邮件）。', steps: ['打开 Moving Company for YouTube™ 扩展程序', '点击右上角齿轮 → 升级 Pro', '粘贴授权码，点击“在这个浏览器激活”'], bad_t: '付款没有完成', bad_p: '这次付款未成功或已取消，没有扣款。你可以回到方案页重新付款。', back: '回到方案页' },
+    en: { ok_pk: 'Your key has also been emailed to you. Activate this browser right here with one click:', ok_t: 'Payment complete, thank you!', ok_p: 'Your license key has been emailed to the address you used at checkout (it arrives within a few minutes; please check spam too).', steps: ['Open the Moving Company for YouTube™ extension', 'Click the gear icon → Upgrade to Pro', 'Paste the key and click “Activate in this browser”'], bad_t: 'Payment not completed', bad_p: 'The payment did not go through or was cancelled, and you were not charged. You can go back and try again.', back: 'Back to plans' },
+    ja: { ok_pk: 'キーはお支払い時のメールアドレスにも送りました。下のボタンで、このブラウザをすぐに有効化できます：', ok_t: 'お支払いが完了しました。ありがとうございます！', ok_p: 'ライセンスキーをお支払い時のメールアドレスに送りました（数分以内に届きます。迷惑メールフォルダもご確認ください）。', steps: ['Moving Company for YouTube™ 拡張機能を開く', '右上の歯車 →「Pro にアップグレード」', 'キーを貼り付けて「このブラウザで有効化」を押す'], bad_t: 'お支払いは完了していません', bad_p: 'お支払いが失敗したか、キャンセルされました。料金は請求されていません。プランのページに戻って、もう一度お試しください。', back: 'プランに戻る' }
+  };
+  const q = new URLSearchParams(location.search);
+  // keep the key for a reload, but take it out of the address bar
+  let licKey = (q.get('license_key') || '').split(',')[0].trim();
+  try { if (licKey) sessionStorage.setItem('ytmc_paid_key', licKey); else licKey = sessionStorage.getItem('ytmc_paid_key') || ''; } catch (e) { /* ignore */ }
+  if (q.has('license_key')) { const u = new URL(location.href); u.searchParams.delete('license_key'); history.replaceState(null, '', u.pathname + u.search + u.hash); }
+  const status = (q.get('status') || 'succeeded').toLowerCase();
+  const ok = !/fail|cancel/.test(status);
+  // shown inside the checkout frame on the plans page: let that page show its own "done" screen
+  const framed = (() => { try { return window.parent !== window && typeof window.parent.ytmcPaid === 'function'; } catch (e) { return false; } })();
+  const fit = () => { if (framed) try { window.parent.ytmcPaid(ok, document.getElementById('card').offsetHeight + 48); } catch (e) {} };
+  fit();
+  let lang = q.get('lang'); try { lang = lang || localStorage.getItem('lang'); } catch (e) {}
+  if (!TX[lang]) { const n = (navigator.language || 'en').toLowerCase(); lang = /^zh/.test(n) ? (/(cn|sg|hans)/.test(n) ? 'cn' : 'zh') : /^ja/.test(n) ? 'ja' : 'en'; }
+  const d = TX[lang];
+  document.documentElement.lang = { zh: 'zh-TW', cn: 'zh-CN', en: 'en', ja: 'ja' }[lang];
+  if (!ok) { document.getElementById('card').classList.add('bad'); document.getElementById('ic').textContent = '!'; }
+  document.getElementById('t').textContent = ok ? d.ok_t : d.bad_t;
+  document.getElementById('p').textContent = ok ? (licKey ? d.ok_pk : d.ok_p) : d.bad_p;
+  if (ok && licKey && window.YTMCExt) {
+    document.getElementById('card').classList.add('has-key');
+    YTMCExt.mount(document.getElementById('lic'), { lang, key: licKey, onSize: fit });
+  }
+  document.getElementById('steps').innerHTML = d.steps.map((x) => `<li>${x}</li>`).join('');
+  document.getElementById('back').textContent = d.back;
+  document.getElementById('back').href = './?lang=' + lang;
+  fit(); if (framed) { addEventListener('load', fit); new ResizeObserver(fit).observe(document.getElementById('card')); }
+</script>
+</body>
+</html>
