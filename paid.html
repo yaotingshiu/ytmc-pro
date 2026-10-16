@@ -7,6 +7,7 @@
 <title>Moving Company for YouTube™ Pro</title>
 <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}
 if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+if(window.parent!==window)t='light';
 document.documentElement.setAttribute('data-theme',t)})()</script>
 <style>
   :root { --bg: #0c0d10; --card: #15171c; --text: #f3f4f6; --sub: #9aa0aa; --line: rgba(255,255,255,.1); --ok: #34d399; --bad: #fb7185; --gold: #f5c451; color-scheme: dark; }
@@ -39,8 +40,9 @@ document.documentElement.setAttribute('data-theme',t)})()</script>
   <a class="btn" id="back" href="./" target="_top"></a>
 </div>
 <script>
-  // a purchase from Dodo's test checkout lands here from test.checkout.dodopayments.com: test mode for this tab
-  (function () { let m = /^https:\/\/test\.checkout\.dodopayments\.com\//.test(document.referrer) ? 'test' : '';
+  // test or live: ?dodo=, else a referrer from Dodo's test checkout, else what the plans page in this tab was using
+  (function () { const q = new URLSearchParams(location.search).get('dodo');
+    let m = q === 'test' || q === 'live' ? q : /^https:\/\/test\.checkout\.dodopayments\.com\//.test(document.referrer) ? 'test' : '';
     try { if (m) sessionStorage.setItem('ytmc_dodo_mode', m); else m = sessionStorage.getItem('ytmc_dodo_mode') || ''; } catch (e) { /* ignore */ }
     window.YTMC_DODO_MODE = m === 'test' ? 'test' : 'live'; })();
 </script>

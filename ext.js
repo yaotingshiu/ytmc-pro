@@ -5,6 +5,9 @@
   'use strict';
   const IDS = ['cmgadokilonjjigdjafidjdggacbcmdm'];   // Chrome Web Store (Edge installs it from there too)
   const CWS = 'https://chromewebstore.google.com/detail/cmgadokilonjjigdjafidjdggacbcmdm';
+  const AMO = 'https://addons.mozilla.org/firefox/addon/moving-company-for-youtube/';
+  // Firefox can't let a web page talk to an extension, so there the page only helps with the key itself
+  const FIREFOX = /Firefox\//.test(navigator.userAgent);
   const DEVICES_API = 'https://ytmc-devices.speed132454.workers.dev/';   // device-list service (Cloudflare Worker URL): every browser a key is active in
   const DODO = { live: 'https://live.dodopayments.com/licenses/', test: 'https://test.dodopayments.com/licenses/' };
 
@@ -14,7 +17,7 @@
     try {
       const r = await fetch(DEVICES_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key, mode: window.YTMC_DODO_MODE === 'test' ? 'test' : 'live' }), cache: 'no-store' });
       const j = await r.json();
-      if (j && j.ok) return { ok: true, devices: j.devices.map((d) => ({ id: d.id, name: d.name, mode: window.YTMC_DODO_MODE === 'test' ? 'test' : 'live', remote: true })) };
+      if (j && j.ok) return { ok: true, limit: j.limit || 0, used: typeof j.used === 'number' ? j.used : j.devices.length, devices: j.devices.map((d) => ({ id: d.id, name: d.name, mode: window.YTMC_DODO_MODE === 'test' ? 'test' : 'live', remote: true })) };
       return { ok: false, error: (j && j.error) === 'notfound' ? 'notfound' : 'network' };
     } catch (e) { return { ok: false, error: 'network' }; }
   }
@@ -57,8 +60,8 @@
   // ---------- strings ----------
   const TX = {
     zh: {
-      web_list_t: '使用中的瀏覽器', dev_note_all: '這裡列出這組授權碼目前啟用中的所有瀏覽器。被移除的瀏覽器會在下次檢查時回到免費版。', web_t: '用授權碼管理使用中的瀏覽器', web_p: '舊電腦壞了或不在身邊？輸入授權碼，就能看到並移除它。', web_btn: '查看使用中的瀏覽器', web_none: '這組授權碼目前沒有啟用中的瀏覽器。', 
-      detect: '正在偵測擴充功能…', noext_t: '這個瀏覽器還沒有安裝 Moving Company for YouTube™ 3.0 以上版本',
+      r_slots: '已用名額', slots: '{0} / {1} 個瀏覽器', web_list_t: '使用中的瀏覽器', dev_note_all: '這裡列出這組授權碼目前啟用中的所有瀏覽器。被移除的瀏覽器會在下次檢查時回到免費版。', web_t: '用授權碼管理使用中的瀏覽器', web_p: '舊電腦壞了或不在身邊？輸入授權碼，就能看到並移除它。', web_btn: '查看使用中的瀏覽器', web_none: '這組授權碼目前沒有啟用中的瀏覽器。', 
+      ff_t: 'Firefox 版請在擴充功能內開通', ff_p: 'Firefox 不允許網頁直接開通擴充功能。請複製授權碼，打開擴充功能的「設定 → 升級 Pro」貼上即可。', install_ff: '前往 Firefox 附加元件', detect: '正在偵測擴充功能…', noext_t: '這個瀏覽器還沒有安裝 Moving Company for YouTube™ 3.0 以上版本',
       noext_p: '安裝或更新後重新整理這一頁，就能在這裡一鍵開通；也可以複製授權碼，到擴充功能的「設定 → 升級 Pro」貼上。',
       install: '前往 Chrome Web Store', free_t: '在這個瀏覽器開通 Pro', key_ph: '貼上授權碼', activate: '一鍵開通這個瀏覽器',
       copy: '複製', copied: '已複製', working: '處理中…', done: '開通完成！這個瀏覽器已經是 Pro，打開擴充功能就能使用。',
@@ -72,8 +75,8 @@
         wrong_product: '這不是 Moving Company for YouTube™ 的授權碼。', empty: '請先貼上授權碼。', noresp: '擴充功能沒有回應，請重新整理頁面再試一次。' }
     },
     cn: {
-      web_list_t: '使用中的浏览器', dev_note_all: '这里列出这组授权码目前激活中的所有浏览器。被移除的浏览器会在下次检查时回到免费版。', web_t: '用授权码管理使用中的浏览器', web_p: '旧电脑坏了或不在身边？输入授权码，就能看到并移除它。', web_btn: '查看使用中的浏览器', web_none: '这组授权码目前没有激活中的浏览器。', 
-      detect: '正在检测扩展程序…', noext_t: '这个浏览器还没有安装 Moving Company for YouTube™ 3.0 以上版本',
+      r_slots: '已用名额', slots: '{0} / {1} 个浏览器', web_list_t: '使用中的浏览器', dev_note_all: '这里列出这组授权码目前激活中的所有浏览器。被移除的浏览器会在下次检查时回到免费版。', web_t: '用授权码管理使用中的浏览器', web_p: '旧电脑坏了或不在身边？输入授权码，就能看到并移除它。', web_btn: '查看使用中的浏览器', web_none: '这组授权码目前没有激活中的浏览器。', 
+      ff_t: 'Firefox 版请在扩展程序内激活', ff_p: 'Firefox 不允许网页直接激活扩展程序。请复制授权码，打开扩展程序的“设置 → 升级 Pro”粘贴即可。', install_ff: '前往 Firefox 附加组件', detect: '正在检测扩展程序…', noext_t: '这个浏览器还没有安装 Moving Company for YouTube™ 3.0 以上版本',
       noext_p: '安装或更新后刷新这一页，就能在这里一键激活；也可以复制授权码，到扩展程序的“设置 → 升级 Pro”粘贴。',
       install: '前往 Chrome Web Store', free_t: '在这个浏览器激活 Pro', key_ph: '粘贴授权码', activate: '一键激活这个浏览器',
       copy: '复制', copied: '已复制', working: '处理中…', done: '激活完成！这个浏览器已经是 Pro，打开扩展程序即可使用。',
@@ -87,8 +90,8 @@
         wrong_product: '这不是 Moving Company for YouTube™ 的授权码。', empty: '请先粘贴授权码。', noresp: '扩展程序没有响应，请刷新页面再试一次。' }
     },
     en: {
-      web_list_t: 'Active browsers', dev_note_all: 'This lists every browser the key is active in right now. A removed browser returns to the free version at its next check.', web_t: 'Manage browsers with your key', web_p: 'Old computer broken or out of reach? Enter your key to see and remove it.', web_btn: 'Show active browsers', web_none: 'This key is not active in any browser right now.', 
-      detect: 'Looking for the extension…', noext_t: 'Moving Company for YouTube™ 3.0 or later is not installed in this browser',
+      r_slots: 'Slots used', slots: '{0} / {1} browsers', web_list_t: 'Active browsers', dev_note_all: 'This lists every browser the key is active in right now. A removed browser returns to the free version at its next check.', web_t: 'Manage browsers with your key', web_p: 'Old computer broken or out of reach? Enter your key to see and remove it.', web_btn: 'Show active browsers', web_none: 'This key is not active in any browser right now.', 
+      ff_t: 'On Firefox, activate inside the extension', ff_p: 'Firefox does not let web pages activate extensions. Copy your key, open the extension, go to Settings → Upgrade to Pro and paste it.', install_ff: 'Open Firefox Add-ons', detect: 'Looking for the extension…', noext_t: 'Moving Company for YouTube™ 3.0 or later is not installed in this browser',
       noext_p: 'Install or update it, then reload this page to activate with one click. Or copy your key and paste it in the extension under Settings → Upgrade to Pro.',
       install: 'Open the Chrome Web Store', free_t: 'Activate Pro in this browser', key_ph: 'Paste your license key', activate: 'Activate this browser',
       copy: 'Copy', copied: 'Copied', working: 'Working…', done: 'Activated! This browser now has Pro. Open the extension to use it.',
@@ -102,8 +105,8 @@
         wrong_product: 'This is not a Moving Company for YouTube™ key.', empty: 'Paste your key first.', noresp: 'The extension did not respond. Reload the page and try again.' }
     },
     ja: {
-      web_list_t: '利用中のブラウザ', dev_note_all: 'このキーが現在有効になっているすべてのブラウザです。削除されたブラウザは次回のチェックで無料版に戻ります。', web_t: 'キーで利用中のブラウザを管理', web_p: '古いパソコンが壊れた・手元にない場合も、キーを入力すれば確認して削除できます。', web_btn: '利用中のブラウザを表示', web_none: 'このキーは現在どのブラウザでも有効になっていません。', 
-      detect: '拡張機能を確認しています…', noext_t: 'このブラウザには Moving Company for YouTube™ 3.0 以降がインストールされていません',
+      r_slots: '使用中の枠', slots: '{0} / {1} ブラウザ', web_list_t: '利用中のブラウザ', dev_note_all: 'このキーが現在有効になっているすべてのブラウザです。削除されたブラウザは次回のチェックで無料版に戻ります。', web_t: 'キーで利用中のブラウザを管理', web_p: '古いパソコンが壊れた・手元にない場合も、キーを入力すれば確認して削除できます。', web_btn: '利用中のブラウザを表示', web_none: 'このキーは現在どのブラウザでも有効になっていません。', 
+      ff_t: 'Firefox 版は拡張機能内で有効化してください', ff_p: 'Firefox ではウェブページから拡張機能を有効化できません。キーをコピーし、拡張機能の「設定 → Pro にアップグレード」に貼り付けてください。', install_ff: 'Firefox アドオンを開く', detect: '拡張機能を確認しています…', noext_t: 'このブラウザには Moving Company for YouTube™ 3.0 以降がインストールされていません',
       noext_p: 'インストールまたは更新してからこのページを再読み込みすると、ここでワンクリックで有効化できます。キーをコピーして、拡張機能の「設定 → Pro にアップグレード」に貼り付けることもできます。',
       install: 'Chrome ウェブストアを開く', free_t: 'このブラウザで Pro を有効化', key_ph: 'ライセンスキーを貼り付け', activate: 'このブラウザを有効化',
       copy: 'コピー', copied: 'コピーしました', working: '処理中…', done: '有効化しました！このブラウザで Pro が使えます。拡張機能を開いてご利用ください。',
@@ -220,8 +223,8 @@
         const r = await webDevices(k);
         btn.disabled = false;
         if (!r || !r.ok) { out.replaceChildren(h('p', { class: 'msg err', text: t().e[(r && r.error) || 'network'] })); sized(); return; }
-        const shown = () => { if (!out.querySelector('.dev')) out.replaceChildren(h('p', { class: 'note', text: t().web_none })); sized(); };
-        out.replaceChildren(r.devices.length ? devList(r.devices, t().web_list_t, k, shown, (d) => webRemove(k, d.id, d.mode)) : h('p', { class: 'note', text: t().web_none }));
+        const title = r.limit ? `${t().web_list_t} · ${t().slots.replace('{0}', r.devices.length).replace('{1}', r.limit)}` : t().web_list_t;
+        out.replaceChildren(r.devices.length ? devList(r.devices, title, k, () => { show(); }, (d) => webRemove(k, d.id, d.mode)) : h('p', { class: 'note', text: t().web_none }));
         sized();
       };
       btn.onclick = show;
@@ -238,9 +241,9 @@
         const cp = key ? h('button', { type: 'button', class: 'ghost', text: t().copy }) : null;
         if (cp) cp.onclick = async () => { try { await navigator.clipboard.writeText(key); } catch (e) { inp.select(); document.execCommand('copy'); } cp.textContent = t().copied; setTimeout(() => { cp.textContent = t().copy; }, 1500); };
         fill(
-          h('h4', { text: t().noext_t }), h('p', { text: t().noext_p }),
+          h('h4', { text: FIREFOX ? t().ff_t : t().noext_t }), h('p', { text: FIREFOX ? t().ff_p : t().noext_p }),
           key ? h('div', { class: 'row' }, inp, cp) : null,
-          h('a', { class: 'b gold big', href: CWS, target: '_blank', rel: 'noopener', text: t().install + ' ↗', style: 'text-align:center' }),
+          h('a', { class: 'b gold big', href: FIREFOX ? AMO : CWS, target: '_blank', rel: 'noopener', text: (FIREFOX ? t().install_ff : t().install) + ' ↗', style: 'text-align:center' }),
           DEVICES_API ? webManage() : null
         );
         sized(); return;
@@ -256,7 +259,8 @@
             h('span', { text: t().r_plan }), h('span', { text: t().plans[s.plan] || s.plan || '-' }),
             h('span', { text: t().r_key }), h('span', { text: s.key || '-' }),
             s.email ? [h('span', { text: t().r_mail }), h('span', { text: s.email })] : [],
-            h('span', { text: t().r_dev }), h('span', { text: s.device || '-' })),
+            h('span', { text: t().r_dev }), h('span', { text: s.device || '-' }),
+            s.limit ? [h('span', { text: t().r_slots }), h('span', { text: t().slots.replace('{0}', s.used).replace('{1}', s.limit) })] : []),
           msgEl(note),
           others.length ? devList(others, t().others, '', () => { note = { cls: 'ok', text: t().removed }; render(); }) : null,
           so

@@ -52,7 +52,7 @@ Welcome to **Moving Company for YouTube™** (formerly YouTube Moving Company; t
 ## 7. License key rules
 
 1. After purchase you receive a license key for use by the purchaser only.
-2. A 1-month license key can be active in **up to 2 browsers** (or browser profiles) **at the same time**; 1-year and lifetime keys in **up to 3**. You can sign out this device in the extension or under “Manage license” on the plans page, or remove other browsers signed in to the same Google account (with sync on) to free their slots. Uninstalling the extension also frees that browser’s slot.
+2. A 1-month license key can be active in **up to 2 browsers** (or browser profiles) **at the same time**; 1-year and lifetime keys in **up to 3**. You can sign out this device in the extension or on the “My license” page, or remove other browsers signed in to the same Google account (with sync on) to free their slots. Uninstalling the extension also frees that browser’s slot.
 3. You may **not** share, publicly post, resell or rent your license key, or otherwise let anyone other than the purchaser use it.
 4. If we detect abnormal use of a license key (such as mass sharing, reselling or frequent device changes in a short time), we may **suspend that license key first** and contact the purchaser where appropriate.
 
